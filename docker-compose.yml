@@ -1,0 +1,42 @@
+version: '3'
+services:
+  db:
+    image: mysql:5.7
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      - MYSQL_DATABASE=books
+      - MYSQL_ROOT_PASSWORD=rootpass
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=userpass
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  node:
+    image: node:10.15
+    working_dir: /var/www
+    volumes:
+      - .:/var/www
+
+  php:
+    build:
+      context: docker/php
+    working_dir: /var/www
+    volumes:
+      - .:/var/www
+
+  web:
+    image: nginx:1.11-alpine
+    ports:
+      - "80:80"
+    volumes:
+      - ./docker/nginx:/etc/nginx/conf.d:ro
+      - ./public:/var/www/public:rw
+      - ./logs/nginx/:/var/log/nginx
+    depends_on:
+      - php
+      - db
+
+volumes:
+  mysql_data: {}
