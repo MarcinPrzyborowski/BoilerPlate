@@ -9,7 +9,15 @@ $ docker-compose up -d --build
 $ docker-compose exec php composer install
 ```
 
+```bash
+$ docker-compose run --rm node npm install
+```
+
+```bash
+$ docker-compose run --rm node npm build
+```
+
 Usage
 -----
 
-http://localhost
+http://localhost/api/doc

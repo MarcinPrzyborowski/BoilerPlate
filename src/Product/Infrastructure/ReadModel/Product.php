@@ -6,7 +6,7 @@ use App\Shared\Uuid;
 
 class Product
 {
-    private Uuid $uuid;
+    private string $uuid;
     private string $name;
     private float $price;
 
@@ -15,7 +15,7 @@ class Product
      * @param string $name
      * @param float $price
      */
-    public function __construct(Uuid $uuid, string $name, float $price)
+    public function __construct(string $uuid, string $name, float $price)
     {
         $this->name = $name;
         $this->price = $price;
@@ -23,9 +23,9 @@ class Product
     }
 
     /**
-     * @return Uuid
+     * @return string
      */
-    public function getUuid(): Uuid
+    public function getUuid(): string
     {
         return $this->uuid;
     }

@@ -56,9 +56,9 @@ class Product
     }
 
     /**
-     * @return Uuid
+     * @return string
      */
-    public function getUuid(): Uuid
+    public function getUuid(): string
     {
         return $this->uuid;
     }

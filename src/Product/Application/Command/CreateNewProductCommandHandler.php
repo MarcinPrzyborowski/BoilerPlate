@@ -29,6 +29,8 @@ class CreateNewProductCommandHandler
         );
 
         $this->productRepository->save($product);
+
+        return $product->getUuid();
     }
 
 }
